@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">Mycelium learning mark</title>
+  <desc id="desc">An earthy circular network of branching mycelium around a central seed.</desc>
+  <defs>
+    <radialGradient id="soil" cx="42%" cy="36%" r="70%">
+      <stop offset="0" stop-color="#f1ead7"/>
+      <stop offset="1" stop-color="#d8c7a7"/>
+    </radialGradient>
+  </defs>
+  <circle cx="128" cy="128" r="116" fill="url(#soil)" stroke="#3f4b35" stroke-width="8"/>
+  <g fill="none" stroke="#596b45" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M128 128C108 105 91 88 66 71M103 102C88 106 75 118 58 131M128 128C148 103 165 91 190 70M153 102C169 110 182 122 199 139M128 128C108 151 95 171 87 198M111 149C92 151 75 160 59 178M128 128C148 151 159 172 167 201M146 151C164 153 181 163 198 181"/>
+    <path d="M66 71l-4-23M66 71L42 69M190 70l3-23M190 70l23-5M58 131l-24-8M58 131l-17 17M199 139l23-5M199 139l14 19M87 198l-3 22M87 198l-21 10M59 178l-22 7M167 201l4 20M167 201l22 10M198 181l20 8" stroke-width="4"/>
+  </g>
+  <g fill="#9b6648" stroke="#3f4b35" stroke-width="3">
+    <circle cx="128" cy="128" r="14"/>
+    <circle cx="66" cy="71" r="7"/>
+    <circle cx="190" cy="70" r="7"/>
+    <circle cx="58" cy="131" r="6"/>
+    <circle cx="199" cy="139" r="6"/>
+    <circle cx="87" cy="198" r="7"/>
+    <circle cx="167" cy="201" r="7"/>
+  </g>
+</svg>

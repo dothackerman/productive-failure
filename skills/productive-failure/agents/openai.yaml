@@ -1,0 +1,9 @@
+interface:
+  display_name: "Productive Failure Tutor"
+  short_description: "Learn through generation, consolidation, and transfer"
+  icon_small: "./assets/mycelium-mark.svg"
+  icon_large: "./assets/mycelium-mark.svg"
+  brand_color: "#596B45"
+  default_prompt: "Use $productive-failure to help me build durable understanding of a concept through generation, consolidation, and transfer."
+policy:
+  allow_implicit_invocation: false

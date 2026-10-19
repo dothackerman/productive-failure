@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="{{LANGUAGE_CODE}}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{PAGE_DESCRIPTION}}">
+    <title>{{PAGE_TITLE}}</title>
+    <link rel="stylesheet" href="{{ASSET_PATH}}/mycelium.css">
+  </head>
+  <body data-pf-cycle="{{CYCLE_ID}}">
+    <a class="pf-skip" href="#main">Skip to the learning record</a>
+    <main class="pf-shell" id="main">
+      <header class="pf-masthead">
+        <p class="pf-eyebrow">Learning record · {{COMPLETION_DATE}}</p>
+        <h1 class="pf-title">{{PAGE_TITLE}}</h1>
+        <p class="pf-lede">{{PAGE_DESCRIPTION}}</p>
+        <dl class="pf-phase-grid">
+          <div class="pf-meta"><dt>Target</dt><dd>{{LEARNING_TARGET}}</dd></div>
+          <div class="pf-meta"><dt>Evidence level</dt><dd>{{EVIDENCE_LEVEL}}</dd></div>
+          <div class="pf-meta"><dt>Next retrieval</dt><dd>{{RETRIEVAL_PLAN}}</dd></div>
+        </dl>
+      </header>
+
+      <div class="pf-content">
+        <section class="pf-panel" data-kind="task"><h2>The problem</h2>{{ORIGINAL_PROBLEM}}</section>
+        <section class="pf-panel" data-kind="attempt"><h2>Your generated RSMs</h2>{{LEARNER_RSMS}}</section>
+        <section class="pf-panel" data-kind="evidence"><h2>What the contrasts exposed</h2>{{CRITICAL_FEATURES}}</section>
+        <section class="pf-panel"><h2>The assembled canonical account</h2>{{CANONICAL_ACCOUNT}}</section>
+        <section class="pf-panel" data-kind="evidence"><h2>Evidence from transfer</h2>{{TRANSFER_EVIDENCE}}</section>
+        <section class="pf-panel" data-kind="attempt"><h2>Still alive underground</h2>{{REMAINING_UNCERTAINTY}}</section>
+      </div>
+      <footer class="pf-footer">This record distinguishes what you demonstrated from what remains to be tested.</footer>
+    </main>
+  </body>
+</html>

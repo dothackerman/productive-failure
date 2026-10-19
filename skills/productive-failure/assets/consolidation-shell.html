@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="{{LANGUAGE_CODE}}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{PAGE_DESCRIPTION}}">
+    <title>{{PAGE_TITLE}}</title>
+    <link rel="stylesheet" href="{{ASSET_PATH}}/mycelium.css">
+  </head>
+  <body data-pf-cycle="{{CYCLE_ID}}">
+    <a class="pf-skip" href="#main">Skip to knowledge assembly</a>
+    <main class="pf-shell" id="main">
+      <header class="pf-masthead">
+        <p class="pf-eyebrow">Consolidation and Knowledge Assembly</p>
+        <h1 class="pf-title">{{PAGE_TITLE}}</h1>
+        <p class="pf-lede">{{PAGE_DESCRIPTION}}</p>
+        <dl class="pf-phase-grid">
+          <div class="pf-meta"><dt>Phase</dt><dd>Consolidation and Knowledge Assembly</dd></div>
+          <div class="pf-meta"><dt>Learning target</dt><dd>{{LEARNING_TARGET}}</dd></div>
+          <div class="pf-meta"><dt>Your current task</dt><dd>{{CURRENT_TASK}}</dd></div>
+        </dl>
+      </header>
+
+      <div class="pf-content">
+        <section class="pf-panel" data-kind="attempt" aria-labelledby="rsm-heading">
+          <h2 id="rsm-heading">The approaches you generated</h2>
+          {{LEARNER_RSMS}}
+        </section>
+        <section class="pf-panel" data-kind="evidence" aria-labelledby="contrast-heading">
+          <h2 id="contrast-heading">Affordances, constraints, and critical features</h2>
+          <div class="pf-table-wrap">{{RSM_COMPARISON}}</div>
+        </section>
+        <section class="pf-panel" data-kind="task" aria-labelledby="assembly-heading">
+          <h2 id="assembly-heading">Assembling the canonical account</h2>
+          {{CANONICAL_ASSEMBLY}}
+        </section>
+        <section class="pf-panel" aria-labelledby="example-heading">
+          <h2 id="example-heading">Worked example</h2>
+          {{WORKED_EXAMPLE}}
+        </section>
+        <section class="pf-panel" data-kind="attempt" aria-labelledby="reconstruct-heading">
+          <h2 id="reconstruct-heading">Reconstruct it in your own reasoning</h2>
+          <label for="pf-reconstruction">{{RECONSTRUCTION_PROMPT}}</label>
+          <p class="pf-help" id="reconstruction-help">Explain why the critical features are necessary and how this differs from your earlier approaches.</p>
+          <textarea id="pf-reconstruction" data-pf-key="reconstruction" aria-describedby="reconstruction-help reconstruction-count"></textarea>
+          <p class="pf-count" id="reconstruction-count" data-pf-count-for="pf-reconstruction">0 words</p>
+          <div class="pf-actions"><button class="pf-button" type="button" data-pf-copy="#pf-reconstruction">Copy my reconstruction</button></div>
+          <p class="pf-status" data-pf-status role="status" aria-live="polite"></p>
+        </section>
+      </div>
+      <footer class="pf-footer">The formal account grows from the useful parts and limits of your attempts.</footer>
+    </main>
+    <script src="{{ASSET_PATH}}/pf-ui.js"></script>
+  </body>
+</html>

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="{{LANGUAGE_CODE}}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{PAGE_DESCRIPTION}}">
+    <title>{{PAGE_TITLE}}</title>
+    <link rel="stylesheet" href="{{ASSET_PATH}}/mycelium.css">
+  </head>
+  <body data-pf-cycle="{{CYCLE_ID}}">
+    <a class="pf-skip" href="#main">Skip to the learning task</a>
+
+    <main class="pf-shell" id="main">
+      <header class="pf-masthead">
+        <p class="pf-eyebrow">{{PHASE}}</p>
+        <h1 class="pf-title">{{PAGE_TITLE}}</h1>
+        <p class="pf-lede">{{PAGE_DESCRIPTION}}</p>
+
+        <dl class="pf-phase-grid">
+          <div class="pf-meta">
+            <dt>Phase</dt>
+            <dd>{{PHASE}}</dd>
+          </div>
+          <div class="pf-meta">
+            <dt>Learning target</dt>
+            <dd>{{LEARNING_TARGET}}</dd>
+          </div>
+          <div class="pf-meta">
+            <dt>Your current task</dt>
+            <dd>{{CURRENT_TASK}}</dd>
+          </div>
+        </dl>
+      </header>
+
+      <div class="pf-content">
+        <section class="pf-panel" data-kind="task" aria-labelledby="problem-heading">
+          <h2 id="problem-heading">The problem</h2>
+          {{PROBLEM_CONTENT}}
+        </section>
+
+        <section class="pf-panel" data-kind="evidence" aria-labelledby="evidence-heading">
+          <h2 id="evidence-heading">What the situation lets you inspect</h2>
+          {{SITUATIONAL_FEEDBACK_CONTENT}}
+        </section>
+
+        <section class="pf-panel" data-kind="attempt" aria-labelledby="attempt-heading">
+          <h2 id="attempt-heading">Build your representation and solution method</h2>
+          <label for="pf-attempt">{{ATTEMPT_PROMPT}}</label>
+          <p class="pf-help" id="attempt-help">Explain your assumptions and reasoning. A serious incomplete attempt is useful material.</p>
+          <textarea id="pf-attempt" data-pf-key="initial-rsm" aria-describedby="attempt-help attempt-count"></textarea>
+          <p class="pf-count" id="attempt-count" data-pf-count-for="pf-attempt">0 words</p>
+          <div class="pf-actions">
+            <button class="pf-button" type="button" data-pf-copy="#pf-attempt">Copy my attempt</button>
+            <button class="pf-button" data-variant="quiet" type="button" data-pf-clear="#pf-attempt">Clear local draft</button>
+          </div>
+          <p class="pf-status" data-pf-status role="status" aria-live="polite"></p>
+        </section>
+      </div>
+
+      <footer class="pf-footer">
+        Your draft stays in this browser unless you choose to copy and share it.
+      </footer>
+    </main>
+
+    <script src="{{ASSET_PATH}}/pf-ui.js"></script>
+  </body>
+</html>
