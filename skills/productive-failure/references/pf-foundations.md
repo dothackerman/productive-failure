@@ -36,9 +36,28 @@ PF is not unguided discovery, random guessing, indefinite withholding, a breadcr
 3. **Explain and elaborate.** Require reasoning, assumptions, representations, predictions, and interpretation—not unsupported answers.
 4. **Organize and assemble.** Connect useful components and exposed gaps into the canonical account during Consolidation.
 
-## Primary foundations
+## Research sources and their influence
 
-- Manu Kapur, “Productive Failure,” *Cognition and Instruction* 26(3), 2008. https://doi.org/10.1080/07370000802212669
-- Manu Kapur, “Examining Productive Failure, Productive Success, Unproductive Failure, and Unproductive Success in Learning,” *Educational Psychologist* 51(2), 2016. https://doi.org/10.1080/00461520.2016.1155457
+Productive Failure is a learning design developed by Manu Kapur and collaborators. The following works provide the research foundations and architectural inspiration for this skill.
 
-Use the papers for conceptual grounding; do not imply that this operational skill text is a verbatim reproduction of a study protocol.
+### Productive Failure
+
+Kapur, M. (2008). [Productive Failure](https://doi.org/10.1080/07370000802212669). *Cognition and Instruction*, 26(3), 379–424.
+
+This work grounds the skill’s sequence of learner generation and exploration before explicit instruction, and its emphasis on learner-generated representations and solution methods as material for subsequent consolidation.
+
+Kapur, M. (2016). [Examining Productive Failure, Productive Success, Unproductive Failure, and Unproductive Success in Learning](https://doi.org/10.1080/00461520.2016.1155457). *Educational Psychologist*, 51(2), 289–299.
+
+This account informs the distinction between initial problem-solving performance and subsequent learning, and the emphasis on designing productive preparation for instruction rather than prolonging failure for its own sake.
+
+### StratL
+
+Puech, R., Macina, J., Chatain, J., Sachan, M., & Kapur, M. (2025). [Towards the Pedagogical Steering of Large Language Models for Tutoring: A Case Study with Modeling Productive Failure](https://doi.org/10.18653/v1/2025.findings-acl.1348). *Findings of the Association for Computational Linguistics: ACL 2025*, 26291–26311. [Published paper](https://aclanthology.org/2025.findings-acl.1348/) · [Authors’ implementation](https://github.com/RomainPuech/StratL-Pedagogical-Steering-of-LLMs-for-Tutoring).
+
+StratL inspired the separation of identifying signals in the learner’s message, selecting a pedagogical action through code, and using an LLM to perform the selected action. This is conceptual inspiration: the current skill expresses its tutoring workflow through instructions and phase routing; it does not implement StratL’s separate code-driven action selector.
+
+## This skill’s adaptations
+
+This repository translates these influences into an agent skill with phase instructions, workspace records, user controls, transfer checks, and optional HTML artifacts. These are implementation choices in this project, not a verbatim reproduction of either research protocol. The cited studies did not evaluate this skill, and their results should not be presented as evidence of its educational efficacy.
+
+Use the papers for conceptual grounding. Preserve the distinction between the original research, architectural inspiration, and this implementation when explaining the skill.
