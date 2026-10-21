@@ -1,49 +1,22 @@
 # Productive Failure Tutor
 
-An agent skill for learning concepts through generation, consolidation, and transfer, based on Manu Kapur’s Productive Failure approach.
-
-The tutor builds on the learner’s own attempts, introduces the canonical account during consolidation, and asks for independent transfer before recording a completed cycle. Optional HTML artifacts use an earthy mycelium visual style.
+An agent skill for learning concepts through Manu Kapur’s Productive Failure approach: try a problem, build understanding from your attempts, then apply it to a new problem. Optional HTML artifacts support interactive learning.
 
 ## Install
 
-From the project where you want to learn, run:
+Run this in the project where you want to learn:
 
 ```sh
 npx skills add dothackerman/productive-failure --skill productive-failure
 ```
 
-The [skills CLI](https://github.com/vercel-labs/skills) discovers the skill and installs it for supported agent harnesses. Follow the installer prompts to choose your targets and installation options. Project-local installation is the default; add `-g` for a personal installation across projects, or `--agent <agent>` to select a specific harness, such as `codex` or `claude-code`.
+The [skills CLI](https://github.com/vercel-labs/skills) requires Node.js and network access. Follow its prompts to select an agent. Add `-g` to install across projects or `--agent codex` to select a host.
 
-The installer currently requires Node.js 22.20 or later, network access, and access to this GitHub repository. The skill itself requires no build step or package dependencies. Its tutoring workflow requires an agent that can read the bundled instructions and references and write files in your chosen learning workspace. Topic research also needs the host’s research tools or suitable learner-provided sources.
-
-HTML artifacts are optional. Producing them requires browser interaction for viewport, keyboard, and print checks. If those checks are unavailable, use text tutoring and skip HTML artifacts.
-
-Installation support does not establish tutoring behavior or invocation controls across every supported harness. Compatibility has not been verified across all hosts.
-
-## Sources and acknowledgments
-
-Productive Failure is a learning design developed by **Manu Kapur and collaborators**. This skill draws on that research, particularly having learners generate representations and solution methods before explicit instruction. Foundational sources include Kapur’s [2008 paper](https://doi.org/10.1080/07370000802212669) and [2016 account](https://doi.org/10.1080/00461520.2016.1155457).
-
-**StratL** provided important inspiration for separating three tutoring decisions: identifying signals in the learner’s message, selecting the next pedagogical action through code, and having an LLM carry out that action. Credit belongs to **Romain Puech, Jakub Macina, Julia Chatain, Mrinmaya Sachan, and Manu Kapur**. See their [2025 paper](https://aclanthology.org/2025.findings-acl.1348/) and [original implementation](https://github.com/RomainPuech/StratL-Pedagogical-Steering-of-LLMs-for-Tutoring).
-
-This repository adapts these influences into an agent skill. Its phase instructions, workspace records, user controls, and HTML artifacts are implementation choices in this project. This skill has not been evaluated in the cited studies. See [Productive Failure foundations](skills/productive-failure/references/pf-foundations.md) for detailed references and the relationship between the research and this implementation.
-
-## Manual installation in Codex
-
-For development or installation without the skills CLI, clone this repository, then copy or symlink `skills/productive-failure` into a skill discovery directory. For project-local use, put it at `.agents/skills/productive-failure` in the project where you want to learn.
-
-For a personal installation on Linux or macOS, from the repository root:
-
-```sh
-mkdir -p ~/.agents/skills
-ln -s "$PWD/skills/productive-failure" ~/.agents/skills/productive-failure
-```
-
-If that destination already exists, inspect it before replacing it. Keep the cloned repository in place while using a symlink.
+For manual installation, copy or symlink `skills/productive-failure/` into `.agents/skills/productive-failure` in your learning project, or `~/.agents/skills/productive-failure` for personal use. Keep the clone in place if you use a symlink.
 
 ## Use
 
-Explicitly invoke the skill using your host’s skill invocation syntax. In Codex:
+Invoke the skill explicitly. In Codex:
 
 ```text
 Use $productive-failure to help me understand Bayesian updating.
@@ -56,39 +29,26 @@ In Claude Code:
 /productive-failure Help me understand Bayesian updating. Use ./learning/bayes as the learning workspace.
 ```
 
-Automatic invocation is disabled in Codex through `agents/openai.yaml` (`policy.allow_implicit_invocation: false`) and in Claude Code through the `SKILL.md` frontmatter (`disable-model-invocation: true`). Other hosts may interpret invocation settings differently; use their documented explicit invocation mechanism.
+The tutor records progress in your chosen workspace. It needs an agent that can read the bundled files and write learning records. Provide sources or use a host with research tools when the topic requires research. HTML artifacts require browser checks; use text tutoring when those checks are unavailable.
 
-The tutor uses a cycle ledger to track the active phase and evidence. Learning files belong in the learner’s chosen workspace.
+Use `CONSOLIDATE NOW` to move from attempts to explanation, `DIRECT INSTRUCTION` to request direct teaching, and `LEDGER` to inspect progress. See [all controls](skills/productive-failure/SKILL.md#user-controls).
 
-Controls include `CONSOLIDATE NOW`, `STAY IN GENERATION`, `DIRECT INSTRUCTION`, `SHOW THE CONTRAST`, `TRANSFER TEST`, and `LEDGER`.
+Automatic invocation is disabled in Codex and Claude Code. Other hosts may handle invocation differently; compatibility has not been verified across all hosts.
 
-## Develop and test
+## Research and credit
 
-Edit the single skill source under `skills/productive-failure/`. Teaching references and output assets stay inside that folder. Development scenarios live in [evals/scenarios.md](evals/scenarios.md).
+Based on Productive Failure by **Manu Kapur and collaborators**, with tutoring architecture inspired by **StratL**. See [research foundations](skills/productive-failure/references/pf-foundations.md#research-sources-and-their-influence) for sources, author credits, and implementation differences. The cited studies did not evaluate this skill.
 
-After meaningful changes, run the relevant scenarios manually in fresh temporary workspaces outside this repository. Give the tutor only the skill and the learner inputs needed for the case; keep expected behavior separate. Inspect responses, state files, and the full source of generated HTML for phase leakage and unsupported learning claims. Preserve explicit invocation behavior and verify relative file references before release.
+## Contribute
 
-The scenarios assess tutor behavior; they do not establish educational efficacy. This repository currently has no automated test harness or CI.
+Edit the skill in `skills/productive-failure/`. Run the relevant [behavioral scenarios](evals/scenarios.md) in fresh temporary workspaces outside this repository. Check responses, learning records, and generated HTML source for premature answers and unsupported learning claims. Verify explicit invocation and relative file links. There is no automated test harness or CI.
 
-## Package for distribution
-
-For an optional archive of the committed version, run this from the repository root:
+To package the committed skill with its license and notices:
 
 ```sh
 git archive --format=zip --output=productive-failure.zip HEAD LICENSE NOTICE skills/productive-failure
 ```
 
-The archive preserves the repository paths and includes the root `LICENSE` and `NOTICE` alongside `skills/productive-failure/`. Commit any intended changes before packaging.
-
-## Layout
-
-- `skills/productive-failure/`: installable instructions, references, metadata, and assets.
-- `evals/scenarios.md`: manual behavioral regression scenarios.
-
 ## License
 
-Copyright 2026 dothackerman. Licensed under the [Apache License, Version 2.0](LICENSE). See [NOTICE](NOTICE) for project attribution and research acknowledgments.
-
-You may use, modify, and redistribute this project, including commercially, under the license terms. When redistributing, include the license and applicable attribution notices, retain relevant source notices, and identify modified files as required by section 4.
-
-The licensing approach was inspired by [Impeccable](https://github.com/pbakaus/impeccable), by Paul Bakaus.
+Copyright 2026 dothackerman. [Apache License 2.0](LICENSE). See [NOTICE](NOTICE) for attribution and research acknowledgments.
