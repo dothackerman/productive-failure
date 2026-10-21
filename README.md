@@ -56,7 +56,7 @@ cmp NOTICE skills/productive-failure/NOTICE &&
 (cd skills && zip -r ../productive-failure.zip productive-failure)
 ```
 
-The skill folder includes regular copies of `LICENSE` and `NOTICE`, so both archive packaging and direct folder installation retain them. Keep those copies identical to the root files when editing licensing or attribution. The archive also includes the [external-source review](skills/productive-failure/THIRD_PARTY.md).
+The skill folder includes regular copies of `LICENSE` and `NOTICE`, so both archive packaging and direct folder installation retain them. Keep those copies identical to the root files when editing licensing or attribution.
 
 ## Layout
 
@@ -69,4 +69,4 @@ Copyright 2026 dothackerman. Licensed under the [Apache License, Version 2.0](LI
 
 You may use, modify, and redistribute this project, including commercially, under the license terms. When redistributing, include the license and applicable attribution notices, retain relevant source notices, and identify modified files as required by section 4.
 
-The licensing approach was inspired by [Impeccable](https://github.com/pbakaus/impeccable), by Paul Bakaus. See the [external-source review](skills/productive-failure/THIRD_PARTY.md) for the scope and findings of the dependency and provenance check.
+The licensing approach was inspired by [Impeccable](https://github.com/pbakaus/impeccable), by Paul Bakaus.
