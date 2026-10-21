@@ -48,11 +48,15 @@ The scenarios assess tutor behavior; they do not establish educational efficacy.
 
 ## Package
 
-From the repository root, create an archive containing only the installable skill:
+From the repository root, verify that the bundled legal files match the repository copies, then create an archive containing the installable skill:
 
 ```sh
+cmp LICENSE skills/productive-failure/LICENSE &&
+cmp NOTICE skills/productive-failure/NOTICE &&
 (cd skills && zip -r ../productive-failure.zip productive-failure)
 ```
+
+The skill folder includes regular copies of `LICENSE` and `NOTICE`, so both archive packaging and direct folder installation retain them. Keep those copies identical to the root files when editing licensing or attribution. The archive also includes the [external-source review](skills/productive-failure/THIRD_PARTY.md).
 
 ## Layout
 
@@ -61,4 +65,8 @@ From the repository root, create an archive containing only the installable skil
 
 ## License
 
-No license has been selected. Public availability does not grant a general reuse license.
+Copyright 2026 dothackerman. Licensed under the [Apache License, Version 2.0](LICENSE). See [NOTICE](NOTICE) for project attribution and research acknowledgments.
+
+You may use, modify, and redistribute this project, including commercially, under the license terms. When redistributing, include the license and applicable attribution notices, retain relevant source notices, and identify modified files as required by section 4.
+
+The licensing approach was inspired by [Impeccable](https://github.com/pbakaus/impeccable), by Paul Bakaus. See the [external-source review](skills/productive-failure/THIRD_PARTY.md) for the scope and findings of the dependency and provenance check.
