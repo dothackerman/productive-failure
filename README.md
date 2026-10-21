@@ -4,6 +4,22 @@ An agent skill for learning concepts through generation, consolidation, and tran
 
 The tutor builds on the learner’s own attempts, introduces the canonical account during consolidation, and asks for independent transfer before recording a completed cycle. Optional HTML artifacts use an earthy mycelium visual style.
 
+## Install
+
+From the project where you want to learn, run:
+
+```sh
+npx skills add dothackerman/productive-failure --skill productive-failure
+```
+
+The [skills CLI](https://github.com/vercel-labs/skills) discovers the skill and installs it for supported agent harnesses. Follow the installer prompts to choose your targets and installation options. Project-local installation is the default; add `-g` for a personal installation across projects, or `--agent <agent>` to select a specific harness, such as `codex` or `claude-code`.
+
+The installer currently requires Node.js 22.20 or later, network access, and access to this GitHub repository. The skill itself requires no build step or package dependencies. Its tutoring workflow requires an agent that can read the bundled instructions and references and write files in your chosen learning workspace. Topic research also needs the host’s research tools or suitable learner-provided sources.
+
+HTML artifacts are optional. Producing them requires browser interaction for viewport, keyboard, and print checks. If those checks are unavailable, use text tutoring and skip HTML artifacts.
+
+Installation support does not establish tutoring behavior or invocation controls across every supported harness. Compatibility has not been verified across all hosts.
+
 ## Sources and acknowledgments
 
 Productive Failure is a learning design developed by **Manu Kapur and collaborators**. This skill draws on that research, particularly having learners generate representations and solution methods before explicit instruction. Foundational sources include Kapur’s [2008 paper](https://doi.org/10.1080/07370000802212669) and [2016 account](https://doi.org/10.1080/00461520.2016.1155457).
@@ -12,9 +28,9 @@ Productive Failure is a learning design developed by **Manu Kapur and collaborat
 
 This repository adapts these influences into an agent skill. Its phase instructions, workspace records, user controls, and HTML artifacts are implementation choices in this project. This skill has not been evaluated in the cited studies. See [Productive Failure foundations](skills/productive-failure/references/pf-foundations.md) for detailed references and the relationship between the research and this implementation.
 
-## Install in Codex
+## Manual installation in Codex
 
-Clone this repository, then copy or symlink `skills/productive-failure` into a skill discovery directory. For project-local use, put it at `.agents/skills/productive-failure` in the project where you want to learn.
+For development or installation without the skills CLI, clone this repository, then copy or symlink `skills/productive-failure` into a skill discovery directory. For project-local use, put it at `.agents/skills/productive-failure` in the project where you want to learn.
 
 For a personal installation on Linux or macOS, from the repository root:
 
@@ -23,18 +39,26 @@ mkdir -p ~/.agents/skills
 ln -s "$PWD/skills/productive-failure" ~/.agents/skills/productive-failure
 ```
 
-If that destination already exists, inspect it before replacing it. Installation requires no build step or package dependencies. Other agent hosts must support the skill format and the file operations used by the workflow; compatibility has not been verified.
+If that destination already exists, inspect it before replacing it. Keep the cloned repository in place while using a symlink.
 
 ## Use
 
-Explicitly invoke the skill, for example:
+Explicitly invoke the skill using your host’s skill invocation syntax. In Codex:
 
 ```text
 Use $productive-failure to help me understand Bayesian updating.
 Use ./learning/bayes as the learning workspace.
 ```
 
-Automatic invocation is disabled. The tutor uses a cycle ledger to track the active phase and evidence. Learning files belong in the learner’s chosen workspace.
+In Claude Code:
+
+```text
+/productive-failure Help me understand Bayesian updating. Use ./learning/bayes as the learning workspace.
+```
+
+Automatic invocation is disabled in Codex through `agents/openai.yaml` (`policy.allow_implicit_invocation: false`) and in Claude Code through the `SKILL.md` frontmatter (`disable-model-invocation: true`). Other hosts may interpret invocation settings differently; use their documented explicit invocation mechanism.
+
+The tutor uses a cycle ledger to track the active phase and evidence. Learning files belong in the learner’s chosen workspace.
 
 Controls include `CONSOLIDATE NOW`, `STAY IN GENERATION`, `DIRECT INSTRUCTION`, `SHOW THE CONTRAST`, `TRANSFER TEST`, and `LEDGER`.
 
@@ -46,17 +70,15 @@ After meaningful changes, run the relevant scenarios manually in fresh temporary
 
 The scenarios assess tutor behavior; they do not establish educational efficacy. This repository currently has no automated test harness or CI.
 
-## Package
+## Package for distribution
 
-From the repository root, verify that the bundled legal files match the repository copies, then create an archive containing the installable skill:
+For an optional archive of the committed version, run this from the repository root:
 
 ```sh
-cmp LICENSE skills/productive-failure/LICENSE &&
-cmp NOTICE skills/productive-failure/NOTICE &&
-(cd skills && zip -r ../productive-failure.zip productive-failure)
+git archive --format=zip --output=productive-failure.zip HEAD LICENSE NOTICE skills/productive-failure
 ```
 
-The skill folder includes regular copies of `LICENSE` and `NOTICE`, so both archive packaging and direct folder installation retain them. Keep those copies identical to the root files when editing licensing or attribution.
+The archive preserves the repository paths and includes the root `LICENSE` and `NOTICE` alongside `skills/productive-failure/`. Commit any intended changes before packaging.
 
 ## Layout
 

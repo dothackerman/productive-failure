@@ -2,6 +2,8 @@
 
 Use HTML when interaction or spatial comparison makes conceptual structure easier to inspect. HTML is a learning instrument, not the default container for every exchange.
 
+Produce HTML only when the host can inspect the full source and perform the browser checks under Verification, including viewport, keyboard, and print checks. If those capabilities are unavailable, continue tutoring in text and skip HTML artifacts. Do not weaken the verification requirements or claim checks that were not performed.
+
 ## Artifact timing
 
 ### Generation artifact
